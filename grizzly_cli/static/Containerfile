@@ -76,6 +76,8 @@ RUN apt-get install -y --no-install-recommends \
     cmake \
     make \
     libssl-dev \
+    libxml2-dev \
+    libxslt1-dev \
     python3-dev
 
 ENV LC_ALL=C.UTF-8
@@ -159,6 +161,8 @@ RUN groupadd \
 
 RUN apt-get install -y --no-install-recommends \
     lsof \
+    strace \
+    procps \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=python --chown=grizzly:grizzly /venv /venv

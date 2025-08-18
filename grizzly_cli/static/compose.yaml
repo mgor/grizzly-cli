@@ -25,7 +25,7 @@ services:
     tty: ${GRIZZLY_CONTAINER_TTY}
     ulimits:
       nofile: ${GRIZZLY_LIMIT_NOFILE}
-    stop_grace_period: 1h
+    stop_grace_period: 10s
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:

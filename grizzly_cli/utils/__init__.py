@@ -73,12 +73,11 @@ class RunCommandResult:
     output: Optional[list[bytes]] = field(init=False, default=None)
 
 
-def run_command(command: list[str], env: Optional[dict[str, str]] = None, *, silent: bool = False, verbose: bool = False, spinner: Optional[str] = None) -> RunCommandResult:
+def run_command(command: list[str], env: Optional[dict[str, str]] = None, *, silent: bool = False, verbose: bool = False, spinner: Optional[str] = None) -> RunCommandResult:  # noqa: ARG001
     if env is None:
         env = environ.copy()
 
-    if verbose:
-        logger.info('run_command: %s', ' '.join(command))
+    logger.info('executing run_command: %s', ' '.join(command))
 
     process = subprocess.Popen(
         command,
@@ -135,6 +134,8 @@ def run_command(command: list[str], env: Optional[dict[str, str]] = None, *, sil
         logger.info('')
 
     result.return_code = process.returncode
+
+    logger.info('returning run_command: %s', ' '.join(command))
 
     return result
 
